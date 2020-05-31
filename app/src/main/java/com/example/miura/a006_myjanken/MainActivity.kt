@@ -6,6 +6,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import android.os.Handler
+import android.util.Log
 import kotlin.concurrent.schedule
 
 
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
 
     //ボタンをタップした時の処理
     override fun onClick(v: View?) {
-
+        //ボタンの無効化
         buttonGuu.isEnabled = false
         buttonTyoki.isEnabled = false
         buttonPaa.isEnabled = false
@@ -92,6 +93,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
         //じゃんけんの勝敗判定
         handler.postDelayed(Runnable {
             when(v?.id){
+                //ユーザーがグーを出した時の処理
                 R.id.buttonGuu
                 -> {
                     buttonGuu.setBackgroundResource(R.drawable.guu)
@@ -104,6 +106,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
                     }
                 }
 
+                //ユーザーがチョキを出した時の処理
                 R.id.buttonTyoki
                 -> {
                     buttonTyoki.setBackgroundResource(R.drawable.tyoki)
@@ -116,6 +119,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
                     }
                 }
 
+                //ユーザーがパーを出した時の処理
                 R.id.buttonPaa
                 -> {
                     buttonPaa.setBackgroundResource(R.drawable.paa)
@@ -132,10 +136,12 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
         },1000)
 
         handler.postDelayed(Runnable {
+            //ボタンの有効化
             buttonGuu.isEnabled = true
             buttonTyoki.isEnabled = true
             buttonPaa.isEnabled = true
 
+            //初期状態に戻す
             textViewResult.text = getString(R.string.jannkenn)
             imageViewResult.visibility = View.INVISIBLE
             imageView.visibility = View.VISIBLE
